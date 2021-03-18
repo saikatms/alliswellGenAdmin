@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import manageLoading from "./manageLoading";
-import authReducer from "./auth"
+import authReducer from "./auth";
 import ordersReducer from "./orders";
 import notificationsReducer from "./notifications";
 import customersReducer from "./customers";
-import booksReducer from "./books";
+import productsReducer from "./products";
 import listsToSelectReducer from "./listsToSelect";
 
 const rootReducer = combineReducers({
@@ -13,8 +13,8 @@ const rootReducer = combineReducers({
   ordersData: ordersReducer,
   notificationsData: notificationsReducer,
   customersData: customersReducer,
-  booksData: booksReducer,
-  listsToSelectData: listsToSelectReducer
+  productsData: productsReducer,
+  listsToSelectData: listsToSelectReducer,
 });
 
 export default rootReducer;

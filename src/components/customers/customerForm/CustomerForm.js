@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { ErrorMessage } from 'formik';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { ErrorMessage } from "formik";
 import {
   Col,
   Row,
@@ -10,14 +10,14 @@ import {
   Label,
   Input,
   CustomInput,
-  FormFeedback
-} from 'reactstrap';
-import CustomErrorMsg from '../../UI/customErrorMsg/CustomErrorMsg';
-import CustomImage from '../../UI/customImage/CustomImage';
-import defaultPath from '../../../assets/images/customer_default.jpg';
-import { PATH_CUSTOMERS } from '../../../shared/constant';
+  FormFeedback,
+} from "reactstrap";
+import CustomErrorMsg from "../../UI/customErrorMsg/CustomErrorMsg";
+import CustomImage from "../../UI/customImage/CustomImage";
+import defaultPath from "../../../assets/images/customer_default.jpg";
+import { PATH_CUSTOMERS } from "../../../shared/constant";
 
-const CustomerForm = props => {
+const CustomerForm = (props) => {
   const {
     values,
     handleChange,
@@ -27,7 +27,7 @@ const CustomerForm = props => {
     setFieldValue,
     setFieldTouched,
     touched,
-    iconDefault
+    iconDefault,
   } = props;
   let fileName = "";
   if (values.icon) {
@@ -37,18 +37,17 @@ const CustomerForm = props => {
     <React.Fragment>
       <Row className="mb-3">
         <Col lg={12}>
-          All fields with
-          &nbsp;
-            <span className="required-asterisk">*</span>
-          &nbsp;
-          are mandatory
+          All fields with &nbsp;
+          <span className="required-asterisk">*</span>
+          &nbsp; are mandatory
         </Col>
       </Row>
       <CustomImage
         downloadPath={values.downloadPath}
         defaultPath={defaultPath}
         isImgDefault={iconDefault}
-        alt="Customer avatar" />
+        alt="Customer avatar"
+      />
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col sm={6} lg={4}>
@@ -57,13 +56,16 @@ const CustomerForm = props => {
                 Full Name <span className="required-asterisk">*</span>
               </Label>
               <Input
-                type="text" name="name" id="name"
+                type="text"
+                name="name"
+                id="name"
                 invalid={errors.name && touched.name}
                 placeholder="e.g. Alex Johnson"
                 title="name"
                 value={values.name}
                 onBlur={handleBlur}
-                onChange={handleChange} />
+                onChange={handleChange}
+              />
               <ErrorMessage name="name" component={CustomErrorMsg} />
             </FormGroup>
           </Col>
@@ -73,13 +75,16 @@ const CustomerForm = props => {
                 Email <span className="required-asterisk">*</span>
               </Label>
               <Input
-                type="email" name="email" id="email"
+                type="email"
+                name="email"
+                id="email"
                 invalid={errors.email && touched.email}
                 placeholder="e.g. alexjohnson@gmail.com"
                 title="email"
                 value={values.email}
                 onBlur={handleBlur}
-                onChange={handleChange} />
+                onChange={handleChange}
+              />
               <ErrorMessage name="email" component={CustomErrorMsg} />
             </FormGroup>
           </Col>
@@ -89,20 +94,28 @@ const CustomerForm = props => {
             <FormGroup>
               <Label for="address">First address</Label>
               <Input
-                type="text" name="address" id="address"
+                type="text"
+                name="address"
+                id="address"
                 placeholder="Number and street name"
                 title="first address"
-                value={values.address} onChange={handleChange} />
+                value={values.address}
+                onChange={handleChange}
+              />
             </FormGroup>
           </Col>
           <Col sm={6} lg={4}>
             <FormGroup>
               <Label for="address2">Second address</Label>
               <Input
-                type="text" name="address2" id="address2"
+                type="text"
+                name="address2"
+                id="address2"
                 placeholder="Second address line (optional)"
                 title="second address"
-                value={values.address2} onChange={handleChange} />
+                value={values.address2}
+                onChange={handleChange}
+              />
             </FormGroup>
           </Col>
         </Row>
@@ -113,13 +126,16 @@ const CustomerForm = props => {
                 City <span className="required-asterisk">*</span>
               </Label>
               <Input
-                type="text" name="city" id="city"
+                type="text"
+                name="city"
+                id="city"
                 invalid={errors.city && touched.city}
                 placeholder="e.g. San Francisco"
                 title="city (e.g. San Francisco)"
                 value={values.city}
                 onBlur={handleBlur}
-                onChange={handleChange} />
+                onChange={handleChange}
+              />
               <ErrorMessage name="city" component={CustomErrorMsg} />
             </FormGroup>
           </Col>
@@ -129,13 +145,16 @@ const CustomerForm = props => {
                 Country <span className="required-asterisk">*</span>
               </Label>
               <Input
-                type="text" name="country" id="country"
+                type="text"
+                name="country"
+                id="country"
                 invalid={errors.country && touched.country}
                 placeholder="e.g. United States"
                 title="country (e.g. United States)"
                 value={values.country}
                 onBlur={handleBlur}
-                onChange={handleChange} />
+                onChange={handleChange}
+              />
               <ErrorMessage name="country" component={CustomErrorMsg} />
             </FormGroup>
           </Col>
@@ -147,62 +166,71 @@ const CustomerForm = props => {
                 Zip code <span className="required-asterisk">*</span>
               </Label>
               <Input
-                type="text" name="zipcode" id="zipcode"
+                type="text"
+                name="zipcode"
+                id="zipcode"
                 invalid={errors.zipcode && touched.zipcode}
                 placeholder="e.g. 67202"
                 title="zip code (e.g. 67202)"
                 value={values.zipcode}
                 onBlur={handleBlur}
-                onChange={handleChange} />
+                onChange={handleChange}
+              />
               <ErrorMessage name="zipcode" component={CustomErrorMsg} />
             </FormGroup>
           </Col>
           <Col sm={6} lg={4}>
             <FormGroup>
-              <Label for="numberOrderedBooks">
-                Number ordered books <span className="required-asterisk">*</span>
+              <Label for="numberOrderedProducts">
+                Number ordered Products{" "}
+                <span className="required-asterisk">*</span>
               </Label>
               <Input
-                type="text" name="numberOrderedBooks" id="numberOrderedBooks"
-                invalid={errors.numberOrderedBooks && touched.numberOrderedBooks}
+                type="text"
+                name="numberOrderedProducts"
+                id="numberOrderedProducts"
+                invalid={
+                  errors.numberOrderedProducts && touched.numberOrderedProducts
+                }
                 placeholder="e.g. 10"
-                title="number ordered books"
-                value={values.numberOrderedBooks}
+                title="number ordered Products"
+                value={values.numberOrderedProducts}
                 onBlur={handleBlur}
-                onChange={handleChange} />
-              <ErrorMessage name="numberOrderedBooks" component={CustomErrorMsg} />
+                onChange={handleChange}
+              />
+              <ErrorMessage
+                name="numberOrderedProducts"
+                component={CustomErrorMsg}
+              />
             </FormGroup>
           </Col>
         </Row>
         <Row>
           <Col sm={6} lg={4}>
             <FormGroup>
-              <div className="label-upload-file mb-1">
-                Cover image
-              </div>
+              <div className="label-upload-file mb-1">Cover image</div>
               <CustomInput
                 type="file"
                 id="icon"
                 name="icon"
-                title={fileName || 'choose an image file'}
-                label={fileName || 'choose an image file'}
-                invalid={(touched.icon && !!errors.icon)}
+                title={fileName || "choose an image file"}
+                label={fileName || "choose an image file"}
+                invalid={touched.icon && !!errors.icon}
                 onChange={(event) => {
                   setFieldTouched("icon", true);
-                  setFieldValue("icon", event.currentTarget.files[0])
+                  setFieldValue("icon", event.currentTarget.files[0]);
                 }}
               />
-              {touched.icon && errors.icon &&
+              {touched.icon && errors.icon && (
                 <FormFeedback className="invalid-feedback-file">
                   {errors.icon}
                 </FormFeedback>
-              }
+              )}
               <div className="mt-1">
                 Maximum size: 5MB
                 <br />
-                Allowed extensions:
-                .jpeg,&nbsp;&nbsp;.jpg,&nbsp;&nbsp;.png
-                    </div>
+                Allowed extensions: .jpeg,&nbsp;&nbsp;.jpg,&nbsp;&nbsp;.png
+              </div>
             </FormGroup>
           </Col>
         </Row>
@@ -211,16 +239,19 @@ const CustomerForm = props => {
             type="submit"
             color="primary"
             className="pull-right"
-            size="lg">
+            size="lg"
+          >
             Save customer
-          </Button>       
+          </Button>
           <NavLink exact to={PATH_CUSTOMERS}>
-            <Button color="secondary" size="lg">Back</Button>
+            <Button color="secondary" size="lg">
+              Back
+            </Button>
           </NavLink>
         </div>
       </Form>
     </React.Fragment>
   );
-}
+};
 
 export default CustomerForm;

@@ -1,55 +1,77 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
-import {NavLink} from 'react-router-dom';
-import { Row, Col } from 'reactstrap';
-import CustomImage from '../../../UI/customImage/CustomImage';
-import defaultPath from '../../../../assets/images/book_default.png';
-import './BoxDetail.scss';
+import { NavLink } from "react-router-dom";
+import { Row, Col } from "reactstrap";
+import CustomImage from "../../../UI/customImage/CustomImage";
+import { defaultPath as imgPath } from "../../../../assets/images/book_default.png";
+import "./BoxDetail.scss";
 
-const BoxDetail = (props) => {  
-    return (  
-        <React.Fragment>   
-                <Row>
-                    <Col xs="12" md="7" lg="7" className="mb-3">                    
-                        <aside>     
-                            <CustomImage 
-                                downloadPath={props.book.downloadPath} 
-                                defaultPath={defaultPath}
-                                isImgDefault={true}
-                                alt="Book icon" />
-                        </aside>
-                    </Col>                   
-                    <Col xs="12" md="5" lg="5"> 
-                        <div className="title-link">                                     
-                            <NavLink exact to={`editBook/${props.book.id}`}> 
-                                {props.book.title} 
-                            </NavLink>
-                        </div>
-                        <div className="subtitle">
-                            {parseFloat(props.book.price).toFixed(2)} $     
-                        </div>                       
-                        {props.book.pageCount } pages<br/>
-                        ISBN: { props.book.isbn }<br/>                       
-                        <NavLink exact to={`editBook/${props.book.id}`}> 
-                            Edit 
-                        </NavLink>
-                        <span> | </span>
-                        <NavLink to="" onClick={(event) => {
-                                                const {book} = props;
-                                                event.preventDefault(); 
-                                                props.toggleDelete(event,book);
-                                                }}>
-                            Delete
-                        </NavLink>                       
-                      </Col> 
-                    </Row>               
-        </React.Fragment>
-    );
+const BoxDetail = (props) => {
+  const { product } = props;
+  let images = [];
+
+  if (product.imageDatas) {
+    images = product.imageDatas;
+  }
+  // console.log(images);
+
+  return (
+    <React.Fragment>
+      <Row>
+        <Col xs="12" md="7" lg="7" className="mb-3">
+          <CustomImage
+            // downloadPath={images}
+            downloadPath={images}
+            defaultPath={imgPath}
+            isImgDefault={true}
+            alt="Medicine icon"
+          />
+        </Col>
+        <Col xs="12" md="5" lg="5">
+          <div className="title-link">
+            <NavLink exact to={`editProduct/${product.id}`}>
+              {product.productName}
+            </NavLink>
+          </div>
+          <br />
+          <div className="subtitle">
+            {product.manufacturerName}
+            <br />
+            {`Price  ₹ ${parseFloat(product.price).toFixed(2)}`}
+            <br />
+            {`Discount   ${product.discount} %`}
+            <br />
+            {`Amount  ₹ ${parseFloat(product.amount).toFixed(2)}`}
+            <br />
+          </div>
+          {product.category === "generic" || product.category === "ethical" ? (
+            <h6>{product.tabletCount} Tablets in Strip</h6>
+          ) : null}
+
+          <br />
+          <NavLink exact to={`editProduct/${product.id}`}>
+            Edit
+          </NavLink>
+          <span> | </span>
+          <NavLink
+            to=""
+            onClick={(event) => {
+              const { product } = props;
+              event.preventDefault();
+              props.toggleDelete(event, product);
+            }}
+          >
+            <span style={{ color: "red", fontSize: "medium" }}>Delete</span>
+          </NavLink>
+        </Col>
+      </Row>
+    </React.Fragment>
+  );
 };
 
 BoxDetail.propTypes = {
-   book: PropTypes.object.isRequired,
-   toggleDelete: PropTypes.func.isRequired
+  product: PropTypes.object.isRequired,
+  toggleDelete: PropTypes.func.isRequired,
 };
 
 export default BoxDetail;
