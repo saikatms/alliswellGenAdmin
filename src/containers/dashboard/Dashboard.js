@@ -8,9 +8,6 @@ import PageNotFound from "../../components/pageNotFound/PageNotFound";
 import AlertModal from "../../components/UI/modals/alertModal/AlertModal";
 import { resetErrorAuth } from "../../store/actions";
 
-const Home = AsyncComponentLoader({
-  loader: () => import("../home/Home"),
-});
 const Products = AsyncComponentLoader({
   loader: () => import("../products/Products"),
 });
@@ -19,18 +16,6 @@ const EditProduct = AsyncComponentLoader({
 });
 const CreateProduct = AsyncComponentLoader({
   loader: () => import("../products/createProduct/CreateProduct"),
-});
-const Customers = AsyncComponentLoader({
-  loader: () => import("../customers/Customers"),
-});
-const CreateCustomer = AsyncComponentLoader({
-  loader: () => import("../customers/createCustomer/CreateCustomer"),
-});
-const EditCustomer = AsyncComponentLoader({
-  loader: () => import("../customers/editCustomer/EditCustomer"),
-});
-const Orders = AsyncComponentLoader({
-  loader: () => import("../orders/Orders"),
 });
 
 class Dashboard extends Component {
@@ -64,12 +49,6 @@ class Dashboard extends Component {
         {
           <Switch>
             <Route
-              exact
-              path={`${this.props.match.url}`}
-              render={() => <Redirect to={`${this.props.match.url}/home`} />}
-            />
-            <Route path={`${this.props.match.url}/home`} component={Home} />
-            <Route
               path={`${this.props.match.url}/products`}
               component={Products}
             />
@@ -81,19 +60,7 @@ class Dashboard extends Component {
               path={`${this.props.match.url}/editProduct/:id`}
               component={EditProduct}
             />
-            <Route
-              path={`${this.props.match.url}/customers`}
-              component={Customers}
-            />
-            <Route
-              path={`${this.props.match.url}/createCustomer`}
-              component={CreateCustomer}
-            />
-            <Route
-              path={`${this.props.match.url}/editCustomer/:id`}
-              component={EditCustomer}
-            />
-            <Route path={`${this.props.match.url}/orders`} component={Orders} />
+
             <Route component={PageNotFound} />
           </Switch>
         }

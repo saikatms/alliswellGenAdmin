@@ -5,12 +5,15 @@ import Carousel from "./Carousel";
 
 const CustomImage = (props) => {
   // console.log(props);
+  // if (!props.downloadPath && props.isImgDefault) {
 
-  if (!props.downloadPath && props.isImgDefault) {
+  if (props.isImgDefault) {
     return (
       <img className="iconDetail" src={props.defaultPath} alt={props.alt} />
     );
   } else if (props.downloadPath) {
+    // console.log("**********");
+
     const { downloadPath } = props;
     const settings = {
       customPaging: function (i) {

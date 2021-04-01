@@ -53,25 +53,6 @@ const ProductForm = (props) => {
         <Row>
           <Col sm={6} md={4}>
             <FormGroup>
-              <Label for="category">Select Product Category</Label>
-              <Input
-                type="select"
-                name="category"
-                id="category"
-                value={values.value}
-                onChange={handleChange}
-              >
-                <option value="" label="Select a Category" />
-                <option value="ethical" label="Ethical" />
-                <option value="generic" label="Generic" />
-                <option value="general" label="General" />
-                <option value="surgical" label="Surgical" />
-              </Input>
-            </FormGroup>
-          </Col>
-
-          <Col sm={6} md={4}>
-            <FormGroup>
               <Label for="productName">
                 Product Name <span className="required-asterisk">*</span>
               </Label>
@@ -111,27 +92,6 @@ const ProductForm = (props) => {
               />
             </FormGroup>
           </Col>
-          {values.category === "ethical" || values.category === "generic" ? (
-            <Col xs={6} sm={4} md={3}>
-              <FormGroup>
-                <Label for="tabletCount">
-                  Tablets in Strip <span className="required-asterisk">*</span>
-                </Label>
-                <Input
-                  type="text"
-                  name="tabletCount"
-                  id="tabletCount"
-                  invalid={errors.tabletCount && touched.tabletCount}
-                  placeholder="e.g. 15"
-                  title="Tablets in Strip"
-                  value={values.tabletCount}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                />
-                <ErrorMessage name="tabletCount" component={CustomErrorMsg} />
-              </FormGroup>
-            </Col>
-          ) : null}
         </Row>
         <Row>
           <Col xs={6} sm={4} md={3}>
@@ -162,9 +122,7 @@ const ProductForm = (props) => {
           </Col>
           <Col xs={6} sm={4} md={3}>
             <FormGroup>
-              <Label for="discount">
-                Discount <span className="required-asterisk">*</span>
-              </Label>
+              <Label for="discount">Discount</Label>
               <Input
                 type="text"
                 name="discount"
@@ -200,36 +158,33 @@ const ProductForm = (props) => {
             </FormGroup>
           </Col>
 
-          {values.category !== "ethical" ? (
-            <Col sm={6} md={4}>
-              <FormGroup>
-                <div className="label-upload-file mb-1">Cover image</div>
-                <CustomInput
-                  type="file"
-                  id="icon"
-                  name="icon"
-                  title={fileName || "choose an image file"}
-                  label={fileName || "choose an image file"}
-                  invalid={touched.icon && !!errors.icon}
-                  multiple
-                  onChange={(event) => {
-                    setFieldTouched("icon", true);
-                    setFieldValue("icon", event.currentTarget.files);
-                  }}
-                />
-                {touched.icon && errors.icon && (
-                  <FormFeedback className="invalid-feedback-file">
-                    {errors.icon}
-                  </FormFeedback>
-                )}
-                <div className="mt-1">
-                  Maximum size: 5MB
-                  <br />
-                  Allowed extensions: .jpeg,&nbsp;&nbsp;.jpg,&nbsp;&nbsp;.png
-                </div>
-              </FormGroup>
-            </Col>
-          ) : null}
+          <Col sm={6} md={4}>
+            <FormGroup>
+              <div className="label-upload-file mb-1">Cover image</div>
+              <CustomInput
+                type="file"
+                id="icon"
+                name="icon"
+                title={fileName || "choose an image file"}
+                label={fileName || "choose an image file"}
+                invalid={touched.icon && !!errors.icon}
+                onChange={(event) => {
+                  setFieldTouched("icon", true);
+                  setFieldValue("icon", event.currentTarget.files[0]);
+                }}
+              />
+              {touched.icon && errors.icon && (
+                <FormFeedback className="invalid-feedback-file">
+                  {errors.icon}
+                </FormFeedback>
+              )}
+              <div className="mt-1">
+                Maximum size: 500kB
+                <br />
+                Allowed extensions: .jpeg,&nbsp;&nbsp;.jpg,&nbsp;&nbsp;.png
+              </div>
+            </FormGroup>
+          </Col>
         </Row>
         <div className="mt-3">
           <Button

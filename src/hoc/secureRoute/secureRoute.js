@@ -9,27 +9,31 @@ to access a specific route
 */
 const SecuredRoute = ({ component: Component, uid, ...otherProps }) => {
   const { pathname } = otherProps.location;
-  return <Route
-    {...otherProps}
-    render={props =>
-      (uid) ? (
-        <Component {...props} />
-      ) : (
-          <Redirect to={{
-            pathname: '/login',
-            state: { pathname: pathname }
-          }} />
+  return (
+    <Route
+      {...otherProps}
+      render={(props) =>
+        uid ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { pathname: pathname },
+            }}
+          />
         )
-    }
-  />
+      }
+    />
+  );
 };
 
 SecuredRoute.propTypes = {
-  uid: PropTypes.string
+  uid: PropTypes.string,
 };
 
-const mapStateToProps = state => ({
-  uid: state.authData.uid
+const mapStateToProps = (state) => ({
+  uid: state.authData.uid,
 });
 
-export default connect(mapStateToProps)(SecuredRoute); 
+export default connect(mapStateToProps)(SecuredRoute);

@@ -87,7 +87,7 @@ export default class Carousel extends React.Component {
 
   render() {
     const { images } = this.props;
-    console.log(images);
+    // console.log(images);
 
     const { currentIndex, isTransitioning, goingLeft } = this.state;
 

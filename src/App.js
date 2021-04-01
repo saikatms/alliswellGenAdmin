@@ -14,7 +14,8 @@ class App extends Component {
       localStorage.getItem("token") &&
       localStorage.getItem("token") !== "undefined"
     ) {
-      const uid = localStorage.getItem("uid");
+      // const uid = localStorage.getItem("uid");
+      const uid = "PIkbr09BzROdqcHXQAr8JrnEhjG2";
       this.props.login({ uid });
     }
   }
@@ -23,8 +24,8 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
-        <Route path="/login" component={Auth} />
-        <SecuredRoute path="/dashboard" component={Dashboard} />
+        {/* <Route path="/login" component={Auth} /> */}
+        <Route path="/dashboard" component={Dashboard} />
         <Route path="*" component={PageNotFound} />
       </Switch>
     );

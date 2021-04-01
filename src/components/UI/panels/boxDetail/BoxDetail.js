@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { Row, Col } from "reactstrap";
 import CustomImage from "../../../UI/customImage/CustomImage";
-import { defaultPath as imgPath } from "../../../../assets/images/book_default.png";
+import defaultPath from "../../../../assets/images/medicine_default.png";
 import "./BoxDetail.scss";
 
 const BoxDetail = (props) => {
@@ -12,6 +12,9 @@ const BoxDetail = (props) => {
 
   if (product.imageDatas) {
     images = product.imageDatas;
+  } else {
+    // console.log(defaultPath);
+    images = defaultPath;
   }
   // console.log(images);
 
@@ -22,7 +25,7 @@ const BoxDetail = (props) => {
           <CustomImage
             // downloadPath={images}
             downloadPath={images}
-            defaultPath={imgPath}
+            defaultPath={defaultPath}
             isImgDefault={true}
             alt="Medicine icon"
           />

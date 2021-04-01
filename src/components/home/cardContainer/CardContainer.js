@@ -12,7 +12,7 @@ class CardContainer extends React.Component {
       <React.Fragment>
         <Row>
           <Col xs="12" sm="6" md="6" xl="4" className="mb-3">
-            <CardLayout titleCard="Most popular Products">
+            <CardLayout titleCard="Most Sold Products">
               {this.props.popularProducts.map((popularProduct, index) => (
                 <div key={index}>
                   <Row>
@@ -78,7 +78,7 @@ class CardContainer extends React.Component {
             </CardLayout>
           </Col>
           <Col xs="12" sm="6" md="6" xl="4" className="mb-3">
-            <CardLayout titleCard="Latest orders">
+            <CardLayout titleCard="Latest Orders">
               {this.props.latestOrders.map((latestOrder, index) => (
                 <div key={index}>
                   <Row>

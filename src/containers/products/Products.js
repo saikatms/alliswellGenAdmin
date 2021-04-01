@@ -23,7 +23,7 @@ class Products extends React.Component {
   };
 
   componentDidMount() {
-    const { uid } = this.props;
+    const uid = "PIkbr09BzROdqcHXQAr8JrnEhjG2";
     this.props.getAllProducts({ uid });
   }
 
@@ -36,7 +36,6 @@ class Products extends React.Component {
   };
 
   toggleDelete = (event, product) => {
-    console.log(product);
     this.setState((state, props) => ({
       isOpenModal: !state.isOpenModal,
       productSelected: product,
@@ -54,7 +53,6 @@ class Products extends React.Component {
   };
 
   render() {
-    // console.log(this.props);
     const {
       loading,
       products,
@@ -64,6 +62,7 @@ class Products extends React.Component {
       error,
       searchText,
     } = this.props;
+    // console.log(products);
     return (
       <React.Fragment>
         <div
@@ -100,6 +99,7 @@ class Products extends React.Component {
                 toggleDelete={this.toggleDelete}
                 deleteProduct={this.deleteProduct}
               />
+
               <CustomPagination
                 pageSize={pageSize}
                 currentPage={currentPage}

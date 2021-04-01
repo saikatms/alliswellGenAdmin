@@ -10,19 +10,18 @@ const ProductValidation = Yup.object().shape({
       excludeEmptyString: true,
     })
     .required("Required field"),
-  tabletCount: Yup.string().matches(/^[0-9]\d*$/, {
-    message: "Enter a valid Strip Count",
+
+  discount: Yup.string().matches(/^0*(?:[0-9][0-9]?|100)$/, {
+    message: "Enter a valid discount percent",
     excludeEmptyString: true,
   }),
   // .required("Required field"),
-
-  discount: Yup.string()
-    .matches(/^0*(?:[0-9][0-9]?|100)$/, {
-      message: "Enter a valid discount percent",
+  amount: Yup.string()
+    .matches(/^\d+(?:\.{0,1}\d{0,2})$/, {
+      message: "Enter a valid Amount",
       excludeEmptyString: true,
     })
     .required("Required field"),
-
   icon: Yup.mixed()
     .test("fileType", "Unsupported File Format", function (value) {
       value = !value ? {} : value;
@@ -35,7 +34,7 @@ const ProductValidation = Yup.object().shape({
     })
     .test("fileSize", "File Size is too large", function (value) {
       value = !value ? {} : value;
-      const maxSize = 5 * 1024 * 1024;
+      const maxSize = 4000000;
       if (value.size === undefined || value.size <= maxSize) {
         return true;
       } else {

@@ -3,17 +3,17 @@ import "firebase/firestore";
 import "firebase/auth";
 import "firebase/storage";
 
-const config = {
-  apiKey: "AIzaSyAX50Nc-IEQ3C1nl584-QKGwQIOZkUTv0M",
-  authDomain: "alliswell-99d18.firebaseapp.com",
-  databaseURL: "https://alliswell-99d18-default-rtdb.firebaseio.com",
-  projectId: "alliswell-99d18",
-  storageBucket: "alliswell-99d18.appspot.com",
-  messagingSenderId: "551951265424",
-  appId: "1:551951265424:web:04d71e802c95067ab57215",
-  measurementId: "G-2W12DJ4HYV",
+const firebaseConfig = {
+  apiKey: "AIzaSyAhMUWKEaU1IUb7_YL9cAYqc1zTH5LMxBA",
+  authDomain: "alliswell-bf686.firebaseapp.com",
+  projectId: "alliswell-bf686",
+  databaseURL: "https://alliswell-bf686-default-rtdb.firebaseio.com",
+  storageBucket: "alliswell-bf686.appspot.com",
+  messagingSenderId: "87465855106",
+  appId: "1:87465855106:web:176b62c113e41eeaee0c9b",
+  measurementId: "G-Z14XS67PLV",
 };
 
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
 export default firebase;

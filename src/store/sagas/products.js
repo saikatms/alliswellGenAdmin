@@ -35,7 +35,11 @@ function* getAllProductsSaga({ payload }) {
     yield put(manageLoading.request());
     const { uid } = payload;
     const querySnapshot = yield getCollection(PRODUCTS, uid);
+    // console.log(querySnapshot);
+
     const products = getElementsFromDocs(querySnapshot);
+    console.log(products);
+
     const productsOrdered = sortAlphabetically(products, "productName", "ASC");
     yield put(getInitialProducts.success({ products: productsOrdered }));
   } catch (error) {
@@ -90,7 +94,7 @@ function that saves products selected with
 associated icon in the firebase DB
 */
 function* createProductSaga({ payload }) {
-  console.log({ payload });
+  // console.log({ payload });
 
   try {
     yield put(manageLoading.request());
@@ -132,40 +136,6 @@ function* createProductSaga({ payload }) {
 function that modifies products selected with 
 associated icon in the firebase DB
 */
-// function* editProductSaga({ payload }) {
-//   console.log({ payload });
-//   try {
-//     yield put(manageLoading.request());
-//     const { idProduct, dataProduct, imageProduct, fullPath, history } = payload;
-//     yield updateDoc(PRODUCTS, idProduct, dataProduct);
-//     if (imageProduct instanceof File) {
-//       if (dataProduct.downloadPath) {
-//         yield deleteFileOnStorage(fullPath);
-//       }
-//       const uniqueFilename = imageProduct.name + "_" + new Date().getTime();
-//       const newFullPath = `${PRODUCTS}/${uniqueFilename}`;
-//       const metadata = { customMetadata: { uid: dataProduct.uid } };
-//       const uploadResponse = yield saveFileOnStorage(
-//         newFullPath,
-//         imageProduct,
-//         metadata
-//       );
-//       const { snapshot } = uploadResponse.task;
-//       const pathReference = yield getPathReference(snapshot.ref.fullPath);
-//       const downloadUrl = yield pathReference.getDownloadURL();
-//       const updatedProperties = {
-//         downloadPath: downloadUrl,
-//         fullPath: newFullPath,
-//       };
-//       yield updateDoc(PRODUCTS, idProduct, updatedProperties);
-//     }
-//     history.push(PATH_PRODUCTS);
-//   } catch (error) {
-//     yield put(genericActionsProducts.failure({ error }));
-//   } finally {
-//     yield put(manageLoading.fulfill());
-//   }
-// }
 function* editProductSaga({ payload }) {
   try {
     yield put(manageLoading.request());

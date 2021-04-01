@@ -21,7 +21,7 @@ import {
 const initialState = {
   loading: false,
   currentPage: 0,
-  pageSize: 3,
+  pageSize: 6,
   numTotalProducts: 0,
   allProducts: [],
   searchText: "",

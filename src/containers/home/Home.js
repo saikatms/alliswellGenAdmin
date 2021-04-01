@@ -95,12 +95,12 @@ class Home extends React.Component {
                 timeframeList={timeframeList}
                 updateNotification={this.updateNotification}
               />
-              {/* <NotificationList
+              <NotificationList
                 orders={currentNotification.orders}
                 revenue={currentNotification.revenue}
                 visitors={currentNotification.visitors}
                 pageViews={currentNotification.pageViews}
-              />*/}
+              />
               <CardContainer
                 popularProducts={this.props.products}
                 loyalCustomers={this.props.customers}

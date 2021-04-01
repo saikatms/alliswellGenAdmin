@@ -5,7 +5,7 @@ import ProductForm from "../../components/products/productForm/ProductForm";
 
 const mapPropsToValues = (props) => {
   const { product } = props;
-  // console.log(product);
+  console.log(product);
 
   return {
     id: product.id || null,
@@ -13,10 +13,8 @@ const mapPropsToValues = (props) => {
     manufacturerName: product.manufacturerName || "",
     price: product.price || "",
     discount: product.discount || "",
-    tabletCount: product.tabletCount || "",
     amount: product.amount || "",
-    category: product.category || "",
-    downloadPath: product.downloadPath || "",
+    category: "general",
     icon: {},
   };
 };
