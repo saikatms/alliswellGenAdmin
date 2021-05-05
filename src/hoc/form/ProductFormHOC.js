@@ -5,7 +5,6 @@ import ProductForm from "../../components/products/productForm/ProductForm";
 
 const mapPropsToValues = (props) => {
   const { product } = props;
-  console.log(product);
 
   return {
     id: product.id || null,

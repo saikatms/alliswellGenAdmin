@@ -24,7 +24,7 @@ class HeaderNav extends React.Component {
         </div>
         <AppSidebarToggler className="d-md-down-none" display="lg" />
         <Nav className="ml-auto" navbar>
-          <NavItem className="d-xs-down-none">
+          {/* <NavItem className="d-xs-down-none">
             <NavLink
               to=""
               className="nav-link css-logout"
@@ -35,7 +35,7 @@ class HeaderNav extends React.Component {
               <i className="fa fa-lock"></i>
               &nbsp; Logout
             </NavLink>
-          </NavItem>
+          </NavItem> */}
         </Nav>
       </React.Fragment>
     );

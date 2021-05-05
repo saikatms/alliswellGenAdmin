@@ -40,7 +40,8 @@ const ProductValidation = Yup.object().shape({
       } else {
         return false;
       }
-    }),
+    })
+    .required("Upload an Image"),
 });
 
 export default ProductValidation;

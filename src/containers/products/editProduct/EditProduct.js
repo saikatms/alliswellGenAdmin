@@ -15,7 +15,6 @@ class EditProduct extends React.Component {
   }
 
   onSubmit = (formValue) => {
-    console.log(formValue);
     const { history } = this.props;
     const dataProduct = { ...formValue };
     const idProduct = dataProduct.id;
@@ -23,7 +22,7 @@ class EditProduct extends React.Component {
     const { fullPath } = this.props.detailProduct;
     delete dataProduct.id;
     delete dataProduct.icon;
-    dataProduct.uid = this.props.uid;
+    dataProduct.uid = "VcU8HkNjnVbbwViPj1HnsPJYEu22";
     this.props.editProduct({
       idProduct,
       dataProduct,

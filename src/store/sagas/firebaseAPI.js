@@ -9,7 +9,6 @@ export function signOut() {
 }
 
 export function getCollection(typeElements, uid) {
-  console.log(uid);
   return firebase
     .firestore()
     .collection(typeElements)

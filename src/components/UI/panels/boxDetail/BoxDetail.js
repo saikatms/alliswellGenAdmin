@@ -13,10 +13,8 @@ const BoxDetail = (props) => {
   if (product.imageDatas) {
     images = product.imageDatas;
   } else {
-    // console.log(defaultPath);
     images = defaultPath;
   }
-  // console.log(images);
 
   return (
     <React.Fragment>

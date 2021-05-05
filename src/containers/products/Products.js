@@ -23,7 +23,7 @@ class Products extends React.Component {
   };
 
   componentDidMount() {
-    const uid = "PIkbr09BzROdqcHXQAr8JrnEhjG2";
+    const uid = "VcU8HkNjnVbbwViPj1HnsPJYEu22";
     this.props.getAllProducts({ uid });
   }
 
@@ -62,7 +62,6 @@ class Products extends React.Component {
       error,
       searchText,
     } = this.props;
-    // console.log(products);
     return (
       <React.Fragment>
         <div
@@ -84,7 +83,7 @@ class Products extends React.Component {
                 message={error.message}
                 additionalText="Error get products"
               />
-              <h1 className="title">Products</h1>
+              <h1 className="title">General Products</h1>
               <SearchByParam
                 numElements={numTotalProducts}
                 nameSection="Products"

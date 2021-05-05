@@ -35,11 +35,8 @@ function* getAllProductsSaga({ payload }) {
     yield put(manageLoading.request());
     const { uid } = payload;
     const querySnapshot = yield getCollection(PRODUCTS, uid);
-    // console.log(querySnapshot);
 
     const products = getElementsFromDocs(querySnapshot);
-    console.log(products);
-
     const productsOrdered = sortAlphabetically(products, "productName", "ASC");
     yield put(getInitialProducts.success({ products: productsOrdered }));
   } catch (error) {
@@ -94,36 +91,57 @@ function that saves products selected with
 associated icon in the firebase DB
 */
 function* createProductSaga({ payload }) {
-  // console.log({ payload });
-
   try {
     yield put(manageLoading.request());
     const { dataProduct, imageProduct, history } = payload;
     const saveResponse = yield addDoc(PRODUCTS, dataProduct);
+    console.log(imageProduct);
+    // if (imageProduct instanceof File) {
+    //   console.log(imageProduct);
+    //   let imgFileList = [];
+    //   for (let index = 0; index < imageProduct.length; index++) {
+    //     const uniqueFilename = `${
+    //       imageProduct[index].name
+    //     }_${new Date().getTime()}`;
+    //     const newFullPath = `${PRODUCTS}/${uniqueFilename}`;
+    //     const metadata = { customMetadata: { uid: dataProduct.uid } };
+    //     const uploadResponse = yield saveFileOnStorage(
+    //       newFullPath,
+    //       imageProduct[index],
+    //       metadata
+    //     );
+    //     // console.log(uploadResponse);
+    //     const { snapshot } = uploadResponse.task;
+    //     const pathReference = yield getPathReference(snapshot.ref.fullPath);
+    //     const downloadUrl = yield pathReference.getDownloadURL();
+    //     const updatedProperties = {
+    //       downloadPath: downloadUrl,
+    //       fullPath: newFullPath,
+    //     };
+    //     imgFileList.push(updatedProperties);
+    //   }
+    //   yield addImage(PRODUCTS, saveResponse.id, imgFileList);
+    // }
+    if (imageProduct instanceof File) {
+      let imgFile = [];
 
-    if (imageProduct instanceof FileList) {
-      let imgFileList = [];
-      for (let index = 0; index < imageProduct.length; index++) {
-        const uniqueFilename = `${
-          imageProduct[index].name
-        }_${new Date().getTime()}`;
-        const newFullPath = `${PRODUCTS}/${uniqueFilename}`;
-        const metadata = { customMetadata: { uid: dataProduct.uid } };
-        const uploadResponse = yield saveFileOnStorage(
-          newFullPath,
-          imageProduct[index],
-          metadata
-        );
-        const { snapshot } = uploadResponse.task;
-        const pathReference = yield getPathReference(snapshot.ref.fullPath);
-        const downloadUrl = yield pathReference.getDownloadURL();
-        const updatedProperties = {
-          downloadPath: downloadUrl,
-          fullPath: newFullPath,
-        };
-        imgFileList.push(updatedProperties);
-      }
-      yield addImage(PRODUCTS, saveResponse.id, imgFileList);
+      const uniqueFilename = `${imageProduct.name}_${new Date().getTime()}`;
+      const newFullPath = `${PRODUCTS}/${uniqueFilename}`;
+      const metadata = { customMetadata: { uid: dataProduct.uid } };
+      const uploadResponse = yield saveFileOnStorage(
+        newFullPath,
+        imageProduct,
+        metadata
+      );
+      const { snapshot } = uploadResponse.task;
+      const pathReference = yield getPathReference(snapshot.ref.fullPath);
+      const downloadUrl = yield pathReference.getDownloadURL();
+      const updatedProperties = {
+        downloadPath: downloadUrl,
+        fullPath: newFullPath,
+      };
+      imgFile.push(updatedProperties);
+      yield addImage(PRODUCTS, saveResponse.id, imgFile);
     }
     history.push(PATH_PRODUCTS);
   } catch (error) {
@@ -143,28 +161,25 @@ function* editProductSaga({ payload }) {
     const { idProduct, dataProduct, imageProduct, fullPath, history } = payload;
     // console.log(imageProduct);
     yield updateDoc(PRODUCTS, idProduct, dataProduct);
-    if (imageProduct instanceof FileList) {
+    if (imageProduct instanceof File) {
       let imgFileList = [];
-      for (let index = 0; index < imageProduct.length; index++) {
-        const uniqueFilename = `${
-          imageProduct[index].name
-        }_${new Date().getTime()}`;
-        const newFullPath = `${PRODUCTS}/${uniqueFilename}`;
-        const metadata = { customMetadata: { uid: dataProduct.uid } };
-        const uploadResponse = yield saveFileOnStorage(
-          newFullPath,
-          imageProduct[index],
-          metadata
-        );
-        const { snapshot } = uploadResponse.task;
-        const pathReference = yield getPathReference(snapshot.ref.fullPath);
-        const downloadUrl = yield pathReference.getDownloadURL();
-        const updatedProperties = {
-          downloadPath: downloadUrl,
-          fullPath: newFullPath,
-        };
-        imgFileList.push(updatedProperties);
-      }
+      const uniqueFilename = `${imageProduct.name}_${new Date().getTime()}`;
+      const newFullPath = `${PRODUCTS}/${uniqueFilename}`;
+      const metadata = { customMetadata: { uid: dataProduct.uid } };
+      const uploadResponse = yield saveFileOnStorage(
+        newFullPath,
+        imageProduct,
+        metadata
+      );
+      const { snapshot } = uploadResponse.task;
+      const pathReference = yield getPathReference(snapshot.ref.fullPath);
+      const downloadUrl = yield pathReference.getDownloadURL();
+      const updatedProperties = {
+        downloadPath: downloadUrl,
+        fullPath: newFullPath,
+      };
+      imgFileList.push(updatedProperties);
+
       yield addImage(PRODUCTS, idProduct, imgFileList);
     }
     history.push(PATH_PRODUCTS);

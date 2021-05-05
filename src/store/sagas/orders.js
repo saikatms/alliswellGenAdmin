@@ -15,13 +15,11 @@ function that returns all orders to which
 the authenticated user is associated
 */
 function* getAllOrdersSaga({ payload }) {
-  console.log(payload);
   try {
     yield put(manageLoading.request());
     const { uid } = payload;
     const querySnapshot = yield getCollection(ORDERS, uid);
     const orders = getElementsFromDocs(querySnapshot);
-    console.log(orders);
 
     const sortedOrders = sortByNumber(orders, "id", "DESC");
     yield put(getInitialOrders.success({ orders: sortedOrders }));

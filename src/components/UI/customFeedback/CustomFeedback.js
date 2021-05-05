@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Alert } from "reactstrap";
 
 const CustomFeedback = (props) => {
-  // console.log(props);
   return props.message ? (
     <Alert color={props.type}>
       {props.message} {props.additionalText}

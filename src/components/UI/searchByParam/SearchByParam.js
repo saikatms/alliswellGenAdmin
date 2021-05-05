@@ -9,7 +9,8 @@ const SearchByParam = (props) => {
       <Row>
         <Col xs="12" lg="auto">
           <div className="text-value mb-2">
-            Total {props.nameSection} : <strong>{props.numElements}</strong>
+            Total General {props.nameSection} :{" "}
+            <strong>{props.numElements}</strong>
           </div>
         </Col>
         <Col xs="auto">

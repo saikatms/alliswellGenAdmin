@@ -12,12 +12,12 @@ class CreateProduct extends React.Component {
   onSubmit = (formValue) => {
     const { history } = this.props;
     const dataProduct = { ...formValue };
-    // console.log(dataProduct);
 
     const imageProduct = dataProduct.icon;
+
     delete dataProduct.id;
     delete dataProduct.icon;
-    dataProduct.uid = "PIkbr09BzROdqcHXQAr8JrnEhjG2";
+    dataProduct.uid = "VcU8HkNjnVbbwViPj1HnsPJYEu22";
     this.props.createProduct({ dataProduct, imageProduct, history });
   };
 

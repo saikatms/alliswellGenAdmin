@@ -73,7 +73,6 @@ class Home extends React.Component {
 
   render() {
     const { loading, timeframeList, currentNotification } = this.props;
-    // console.log(this.props);
     return (
       <React.Fragment>
         <div
